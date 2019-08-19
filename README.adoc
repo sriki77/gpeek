@@ -1,0 +1,43 @@
+= Groovy Peek (G - Peek)
+
+I have been working with a platform that supports dynamic code generation and loading.
+Groovy has been the choice of language for the dynamic code. The underlying platform has been Java/JVM stack.
+
+Dynamic code does not get any love from the IDE breakpoints for debugging. Hence I used
+this approach of Groovy AST transformation to render the code execution as a snapshot in time to aid debugging.
+
+Groovy support for AST and its usage has been very helpful.Glad that I choose Groovy as the language of choice for the
+dynamic code in the platform.
+
+This is demonstration of the approach to peek into the function's variables post execution of the function.
+Helpful in determine the cause of the result obtained from the function.
+
+Typically dynamic code generation
+
+Add an `@intercept` annotation as follows to the function whose rendering is needed.
+```
+ @Intercept
+    BigDecimal payment() {
+        def now = LocalDate.now()
+        def march = isMarch(this, Date.valueOf(now))
+        if (march) {
+            return schoolFees + propertyTax
+        }
+        return servantPay
+    }
+```
+And render the result post execution with `@ShowResult` annotation as follows
+
+```
+public java.math.BigDecimal payment() {
+    java.lang.Object now = "java.time.LocalDate.now()=2019-08-19"
+    java.lang.Object march = "IndividualPaymentCalculator.isMarch(java.sql.Date.valueOf(now=2019-08-19)=2019-08-19)=false"
+    if ("march=false") {
+        return schoolFees + propertyTax
+    }
+    return "servantPay=3000.0"
+    "result=3000.0"
+}
+```
+The rendering above is a snapshot,in time, of the method execution.
+The test provided demonstrates the usage.

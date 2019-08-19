@@ -1,0 +1,13 @@
+.idea
+*.iml
+target/
+*.log
+*.log.gz
+*.tmp
+.settings/
+.classpath
+.project
+.DS_Store
+logs/
+git_stats
+tmp
