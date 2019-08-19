@@ -1,4 +1,4 @@
-= Groovy Peek (G - Peek)
+= Groovy Peek (G-Peek)
 
 I have been working with a platform that supports dynamic code generation and loading.
 Groovy has been the choice of language for the dynamic code. The underlying platform has been Java/JVM stack.
@@ -9,10 +9,8 @@ this approach of Groovy AST transformation to render the code execution as a sna
 Groovy support for AST and its usage has been very helpful.Glad that I choose Groovy as the language of choice for the
 dynamic code in the platform.
 
-This is demonstration of the approach to peek into the function's variables post execution of the function.
-Helpful in determine the cause of the result obtained from the function.
-
-Typically dynamic code generation
+The code in this repository is a demonstration of the approach to peek into the function's variables post execution.
+Helpful in determining the cause of the result obtained from the function.
 
 Add an `@intercept` annotation as follows to the function whose rendering is needed.
 ```
@@ -40,4 +38,4 @@ public java.math.BigDecimal payment() {
 }
 ```
 The rendering above is a snapshot,in time, of the method execution.
-The test provided demonstrates the usage.
+The unit test provided in the repository demonstrates the usage.
